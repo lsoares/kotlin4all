@@ -19,7 +19,8 @@ dependencies {
             'org.springframework.boot:spring-boot-starter-web',
             'com.fasterxml.jackson.module:jackson-module-kotlin',
             'org.jetbrains.kotlin:kotlin-reflect',
-            'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
+            'org.jetbrains.kotlin:kotlin-stdlib-jdk8',
+            'org.jsoup:jsoup:1.11.3'
     )
 
     testImplementation (
