@@ -20,6 +20,7 @@ dependencies {
             'com.fasterxml.jackson.module:jackson-module-kotlin',
             'org.jetbrains.kotlin:kotlin-reflect',
             'org.jetbrains.kotlin:kotlin-stdlib-jdk8',
+            "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.1.1",
             'org.jsoup:jsoup:1.11.3'
     )
 
