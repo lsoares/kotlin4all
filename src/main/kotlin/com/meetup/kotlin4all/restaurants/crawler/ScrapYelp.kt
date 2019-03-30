@@ -1,5 +1,6 @@
 package com.meetup.kotlin4all.restaurants.crawler
 
+import com.meetup.kotlin4all.restaurants.Restaurant
 import org.jsoup.Jsoup
 import org.springframework.stereotype.Component
 
@@ -11,9 +12,7 @@ class ScrapYelp {
             .data("find_loc", location)
             .data("start", start.toString())
             .get().select("h3 a").map {
-                Restaurant(it.text(), it.attr("href"))
+                Restaurant(name = it.text(), path = it.attr("href"))
             }
     }
 }
-
-data class Restaurant(val name: String, val path: String)

@@ -17,6 +17,8 @@ repositories {
 dependencies {
     implementation(
             'org.springframework.boot:spring-boot-starter-web',
+            'org.springframework.boot:spring-boot-starter-data-jpa',
+            'com.h2database:h2',
             'com.fasterxml.jackson.module:jackson-module-kotlin',
             'org.jetbrains.kotlin:kotlin-reflect',
             'org.jetbrains.kotlin:kotlin-stdlib-jdk8',
