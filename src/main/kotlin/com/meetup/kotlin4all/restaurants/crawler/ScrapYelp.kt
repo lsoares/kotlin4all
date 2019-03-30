@@ -1,4 +1,4 @@
-package com.meetup.kotlin4all
+package com.meetup.kotlin4all.restaurants.crawler
 
 import org.jsoup.Jsoup
 import org.springframework.stereotype.Component

@@ -1,6 +1,5 @@
-package com.meetup.kotlin4all.crawler
+package com.meetup.kotlin4all.restaurants.crawler
 
-import com.meetup.kotlin4all.ScrapYelp
 import kotlinx.coroutines.joinAll
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
