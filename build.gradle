@@ -27,7 +27,8 @@ dependencies {
     )
 
     testImplementation (
-            'org.springframework.boot:spring-boot-starter-test'
+            'org.springframework.boot:spring-boot-starter-test',
+            'com.nhaarman:mockito-kotlin:1.6.0'
     )
 }
 
