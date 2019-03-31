@@ -12,6 +12,7 @@ import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.test.context.junit4.SpringRunner
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.content
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 
@@ -44,6 +45,14 @@ class RestaurantResourceTest {
 
         result.andExpect(status().isOk)
         verify(scrapYelp).scrap("porto", 10)
+    }
+
+    @Test
+    fun testCrawl() {
+        val result = mockMvc.perform(post("/restaurants/crawl"))
+
+        result.andExpect(status().isOk)
+        verify(crawlYelp).concurrentCrawl()
     }
 
     @Test

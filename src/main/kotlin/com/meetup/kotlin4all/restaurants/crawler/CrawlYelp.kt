@@ -15,7 +15,6 @@ class CrawlYelp(val scrapYelp: ScrapYelp, val restaurantsRepository: Restaurants
             for (start in 1..10) {
                 val rests = scrapYelp.scrap(loc, start * 10)
                 restaurantsRepository.saveAll(rests)
-                println("done $loc $start")
             }
         }
     }
@@ -27,7 +26,6 @@ class CrawlYelp(val scrapYelp: ScrapYelp, val restaurantsRepository: Restaurants
                     launch {
                         val rests = scrapYelp.scrap(loc, start * 10)
                         restaurantsRepository.saveAll(rests)
-                        println("done $loc $start")
                     }
                 }
             }.flatten().joinAll()
