@@ -12,10 +12,10 @@ class CrawlYelp(val scrapYelp: ScrapYelp, val restaurantsRepository: Restaurants
 
     fun crawl() {
         cities.forEach { loc ->
-            for (page in 1..10) {
-                val rests = scrapYelp.scrap(loc, page)
+            for (start in 1..10) {
+                val rests = scrapYelp.scrap(loc, start * 10)
                 restaurantsRepository.saveAll(rests)
-                println("done $loc $page")
+                println("done $loc $start")
             }
         }
     }
@@ -23,11 +23,11 @@ class CrawlYelp(val scrapYelp: ScrapYelp, val restaurantsRepository: Restaurants
     fun concurrentCrawl() {
         runBlocking {
             cities.map { loc ->
-                1.rangeTo(10).map { page ->
+                1.rangeTo(10).map { start ->
                     launch {
-                        val rests = scrapYelp.scrap(loc, page)
+                        val rests = scrapYelp.scrap(loc, start * 10)
                         restaurantsRepository.saveAll(rests)
-                        println("done $loc $page")
+                        println("done $loc $start")
                     }
                 }
             }.flatten().joinAll()

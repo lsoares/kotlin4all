@@ -2,12 +2,10 @@ package com.meetup.kotlin4all.restaurants
 
 import com.meetup.kotlin4all.restaurants.crawler.CrawlYelp
 import com.meetup.kotlin4all.restaurants.crawler.ScrapYelp
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestParam
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
-@RestController("restaurants")
+@RestController
+@RequestMapping("restaurants")
 class RestaurantResource(
     val restaurantsRepository: RestaurantsRepository,
     val scrapYelp: ScrapYelp,
@@ -23,7 +21,7 @@ class RestaurantResource(
         crawlYelp.concurrentCrawl()
     }
 
-    @GetMapping("")
+    @GetMapping
     fun listRestaurants() =
         restaurantsRepository.findAll()
 }

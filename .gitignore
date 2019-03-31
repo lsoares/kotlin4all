@@ -3,4 +3,4 @@
 /build/
 !gradle-wrapper.jar
 /out
-kotlin4all.iml
+*.iml

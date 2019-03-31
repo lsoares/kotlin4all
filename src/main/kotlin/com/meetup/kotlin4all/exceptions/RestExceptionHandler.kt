@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler
 class InvalidOrderException(msg: String = "Was not possible to create the Order.") : RuntimeException(msg)
 
 @ControllerAdvice
-class RestExceptionHandler() {
+class RestExceptionHandler {
 
     @ExceptionHandler(InvalidOrderException::class)
     fun invalidOrderException(exception: InvalidOrderException) =
