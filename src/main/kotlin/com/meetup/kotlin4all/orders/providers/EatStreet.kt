@@ -4,7 +4,10 @@ import com.meetup.kotlin4all.exceptions.InvalidOrderException
 import com.meetup.kotlin4all.orders.NewOrder
 import com.meetup.kotlin4all.orders.OnlineFoodAPI
 import com.meetup.kotlin4all.orders.Order
+import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.beans.factory.annotation.Value
+import org.springframework.context.annotation.Bean
+import org.springframework.context.annotation.Configuration
 import org.springframework.http.HttpEntity
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpMethod
@@ -13,6 +16,7 @@ import org.springframework.stereotype.Component
 import org.springframework.web.client.RestTemplate
 
 @Component
+@Qualifier("EatStreet")
 class EatStreet(val restTemplate: RestTemplate,
                 @Value("\${eat-street.apiUrl}") val apiUrl: String,
                 @Value("\${eat-street.apiAuthKey}") val apiAuthKey: String) : OnlineFoodAPI {
@@ -28,4 +32,10 @@ class EatStreet(val restTemplate: RestTemplate,
 
         return response.body ?: throw InvalidOrderException()
     }
+}
+
+@Configuration
+class Config {
+    @Bean
+    fun restTemplate() = RestTemplate()
 }
