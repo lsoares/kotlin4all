@@ -1,4 +1,4 @@
-package com.meetup.kotlin4all.exceptions
+package com.meetup.kotlin4all.orders
 
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity

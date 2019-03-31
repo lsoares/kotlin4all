@@ -2,6 +2,7 @@ package com.meetup.kotlin4all.restaurants
 
 import com.meetup.kotlin4all.restaurants.crawler.CrawlYelp
 import com.meetup.kotlin4all.restaurants.crawler.ScrapYelp
+import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.whenever
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -31,12 +32,28 @@ class RestaurantResourceTest {
     private lateinit var crawlYelp: CrawlYelp
 
     @Test
+    fun testScrap() {
+        whenever(scrapYelp.scrap("porto", 10))
+            .thenReturn(listOf(Restaurant(name = "a", path = "1"), Restaurant(name = "b", path = "2")))
+
+        val result = mockMvc.perform(
+            get("/restaurants/scrap")
+                .param("loc", "porto")
+                .param("start", "10")
+        )
+
+        result.andExpect(status().isOk)
+        verify(scrapYelp).scrap("porto", 10)
+    }
+
+    @Test
     fun testFindAll() {
         whenever(restaurantsRepository.findAll())
             .thenReturn(listOf(Restaurant(name = "a", path = "1"), Restaurant(name = "b", path = "2")))
 
-        mockMvc.perform(get("/restaurants"))
-            .andExpect(status().isOk)
+        val result = mockMvc.perform(get("/restaurants"))
+
+        result.andExpect(status().isOk)
             .andExpect(content().json("[{name: a, path: \"1\"}, {name: b, path: \"2\"}]"))
     }
 }

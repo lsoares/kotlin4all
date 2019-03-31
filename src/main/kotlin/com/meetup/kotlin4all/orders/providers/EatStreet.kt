@@ -1,6 +1,6 @@
 package com.meetup.kotlin4all.orders.providers
 
-import com.meetup.kotlin4all.exceptions.InvalidOrderException
+import com.meetup.kotlin4all.orders.InvalidOrderException
 import com.meetup.kotlin4all.orders.NewOrder
 import com.meetup.kotlin4all.orders.OnlineFoodAPI
 import com.meetup.kotlin4all.orders.Order
