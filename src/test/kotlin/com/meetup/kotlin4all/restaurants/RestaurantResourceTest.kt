@@ -4,6 +4,7 @@ import com.meetup.kotlin4all.restaurants.crawler.CrawlYelp
 import com.meetup.kotlin4all.restaurants.crawler.ScrapYelp
 import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.whenever
+import kotlinx.coroutines.runBlocking
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.springframework.beans.factory.annotation.Autowired
@@ -52,7 +53,19 @@ class RestaurantResourceTest {
         val result = mockMvc.perform(post("/restaurants/crawl"))
 
         result.andExpect(status().isOk)
-        verify(crawlYelp).concurrentCrawl()
+            .andExpect(content().string("crawling"))
+
+        runBlocking {
+            verify(crawlYelp).concurrentCrawl()
+        }
+    }
+
+    @Test
+    fun testCrawlNotConcurrent() {
+        val result = mockMvc.perform(post("/restaurants/crawl").param("concurrent", "false"))
+
+        result.andExpect(status().isOk)
+        verify(crawlYelp).crawl()
     }
 
     @Test

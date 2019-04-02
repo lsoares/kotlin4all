@@ -17,8 +17,13 @@ class RestaurantResource(
         scrapYelp.scrap(loc, start)
 
     @PostMapping("crawl")
-    fun crawl() {
-        crawlYelp.concurrentCrawl()
+    fun crawl(@RequestParam(defaultValue = "true") concurrent: Boolean): String {
+        if (concurrent)
+            crawlYelp.concurrentCrawl()
+        else
+            crawlYelp.crawl()
+
+        return "crawling"
     }
 
     @GetMapping

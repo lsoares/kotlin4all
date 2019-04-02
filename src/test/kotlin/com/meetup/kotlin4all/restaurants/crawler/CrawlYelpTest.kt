@@ -3,6 +3,8 @@ package com.meetup.kotlin4all.restaurants.crawler
 import com.meetup.kotlin4all.restaurants.Restaurant
 import com.meetup.kotlin4all.restaurants.RestaurantsRepository
 import com.nhaarman.mockito_kotlin.*
+import kotlinx.coroutines.joinAll
+import kotlinx.coroutines.runBlocking
 import org.junit.Test
 
 class CrawlYelpTest {
@@ -37,7 +39,9 @@ class CrawlYelpTest {
         val restaurantsRepository = mock<RestaurantsRepository>()
         val crawlYelp = CrawlYelp(scrapYelp, restaurantsRepository)
 
-        crawlYelp.concurrentCrawl()
+        runBlocking {
+            crawlYelp.concurrentCrawl().joinAll()
+        }
 
         verify(restaurantsRepository, times(40)).saveAll(restaurants)
         verify(scrapYelp, times(10)).scrap(eq("lisbon"), any())
