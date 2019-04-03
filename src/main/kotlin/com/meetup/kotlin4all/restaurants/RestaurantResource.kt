@@ -19,7 +19,7 @@ class RestaurantResource(
     @PostMapping("crawl")
     fun crawl(@RequestParam(defaultValue = "true") concurrent: Boolean): String {
         if (concurrent)
-            crawlYelp.concurrentCrawl()
+            crawlYelp.concurrentCrawlWithChannels()
         else
             crawlYelp.crawl()
 

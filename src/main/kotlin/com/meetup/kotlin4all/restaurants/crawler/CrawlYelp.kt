@@ -1,9 +1,12 @@
 package com.meetup.kotlin4all.restaurants.crawler
 
+import com.meetup.kotlin4all.restaurants.Restaurant
 import com.meetup.kotlin4all.restaurants.RestaurantsRepository
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import org.springframework.stereotype.Service
 
 @Service
@@ -28,5 +31,24 @@ class CrawlYelp(val scrapYelp: ScrapYelp, val restaurantsRepository: Restaurants
                 }
             }
         }.flatten()
+    }
+
+    fun concurrentCrawlWithChannels() {
+        val restaurantDoneChannel = Channel<Restaurant>()
+        cities.forEach { loc ->
+            for (start in 1..10) {
+                GlobalScope.launch {
+                    scrapYelp.scrap(loc, start * 10, restaurantDoneChannel)
+                }
+            }
+        }
+
+        runBlocking {
+            repeat(40) {
+                println(restaurantDoneChannel.receive())
+            }
+        }
+        restaurantDoneChannel.close()
+
     }
 }
