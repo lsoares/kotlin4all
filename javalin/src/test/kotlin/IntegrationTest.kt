@@ -1,12 +1,12 @@
+
 import io.mockk.*
-import org.eclipse.jetty.http.HttpStatus
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import java.net.URI
 import java.net.http.HttpClient.newHttpClient
 import java.net.http.HttpRequest
-import java.net.http.HttpRequest.BodyPublishers.*
-import java.net.http.HttpResponse.*
+import java.net.http.HttpRequest.BodyPublishers.ofString
+import java.net.http.HttpResponse.BodyHandlers.ofString
 
 class IntegrationTest {
 
@@ -17,10 +17,10 @@ class IntegrationTest {
             .uri(URI("http://localhost:7000?name=meetup.com"))
             .GET()
 
-        val httpResponse = newHttpClient().send(request.build(), BodyHandlers.ofString())
+        val response = newHttpClient().send(request.build(), ofString())
 
-        assertEquals("Hello meetup.com", httpResponse.body())
-        assertEquals(HttpStatus.OK_200, httpResponse.statusCode())
+        assertEquals("Hello meetup.com", response.body())
+        assertEquals(200, response.statusCode())
     }
 
     @Test
@@ -34,10 +34,10 @@ class IntegrationTest {
             .header("Content-Type", "application/json")
             .POST(ofString("{\"name\":\"test\"}"))
 
-        val httpResponse = newHttpClient().send(request.build(), BodyHandlers.ofString())
+        val response = newHttpClient().send(request.build(), ofString())
 
         verify { CustomerRepo.save(Customer("test")) }
-        assertEquals("", httpResponse.body())
-        assertEquals(HttpStatus.CREATED_201, httpResponse.statusCode())
+        assertEquals("", response.body())
+        assertEquals(201, response.statusCode())
     }
 }
