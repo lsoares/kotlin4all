@@ -1,0 +1,5 @@
+spring:
+  h2:
+    console:
+      enabled: true
+      # open in jdbc:h2:mem:testdb
