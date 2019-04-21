@@ -19,12 +19,11 @@ dependencies {
 	implementation 'com.fasterxml.jackson.module:jackson-module-kotlin'
 	implementation 'org.jetbrains.kotlin:kotlin-reflect'
 	implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
-
-	implementation 'org.springframework.boot:spring-boot-starter-webflux'
-	implementation 'io.javalin:javalin:2.8.0'
-	implementation 'io.ktor:ktor-server-core:1.1.4'
+	implementation "org.springframework.boot:spring-boot-starter-data-jpa"
+	implementation "com.h2database:h2"
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'com.nhaarman:mockito-kotlin:1.6.0'
 }
 
 compileKotlin {
