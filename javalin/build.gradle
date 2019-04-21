@@ -22,6 +22,7 @@ dependencies {
     implementation "com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonVersion"
 
     testImplementation "org.junit.jupiter:junit-jupiter-api:$junitVersion"
+    testImplementation 'io.mockk:mockk:1.9.3'
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
 }
 

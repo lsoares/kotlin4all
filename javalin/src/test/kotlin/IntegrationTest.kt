@@ -1,3 +1,4 @@
+import io.mockk.*
 import org.eclipse.jetty.http.HttpStatus
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
@@ -24,6 +25,9 @@ class IntegrationTest {
 
     @Test
     fun `test create customer`() {
+        mockkObject(CustomerRepo)
+        every { CustomerRepo.save(Customer("test")) } just Runs
+
         main()
         val request = HttpRequest.newBuilder()
             .uri(URI("http://localhost:7000/customers"))
@@ -32,6 +36,7 @@ class IntegrationTest {
 
         val httpResponse = newHttpClient().send(request.build(), BodyHandlers.ofString())
 
+        verify { CustomerRepo.save(Customer("test")) }
         assertEquals("", httpResponse.body())
         assertEquals(HttpStatus.CREATED_201, httpResponse.statusCode())
     }
