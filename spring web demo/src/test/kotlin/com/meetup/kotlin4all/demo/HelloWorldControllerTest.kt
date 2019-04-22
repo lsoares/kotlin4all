@@ -15,13 +15,16 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 
 @RunWith(SpringRunner::class)
 @WebMvcTest(HelloWorldController::class)
-class ItemsTest {
+class HelloWorldControllerTest {
 
     @Autowired
     private lateinit var mockMvc: MockMvc
 
     @MockBean
     private lateinit var itemService: ItemService
+
+    @MockBean
+    private lateinit var userService: UserService
 
     @Test
     fun `test hello`() {
@@ -37,5 +40,14 @@ class ItemsTest {
         mockMvc.perform(get("/items"))
                 .andExpect(status().isOk)
                 .andExpect(content().json("[{id:0, name:VW, price:2, quantity:15}]"))
+    }
+
+    @Test
+    fun `test get users`() {
+        whenever(userService.retrieveAllUsers()) doReturn listOf(User(name = "user1"), User(name = "user2"))
+
+        mockMvc.perform(get("/users"))
+                .andExpect(status().isOk)
+                .andExpect(content().json("""[{"name":"user1"}, {"name":"user2"}]"""))
     }
 }

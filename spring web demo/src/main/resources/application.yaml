@@ -3,3 +3,5 @@ spring:
     console:
       enabled: true
       # open in jdbc:h2:mem:testdb
+jsonplaceholder:
+  apiUrl: https://jsonplaceholder.typicode.com
