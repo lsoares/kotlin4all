@@ -26,6 +26,9 @@ class HelloWorldControllerTest {
     @MockBean
     private lateinit var userService: UserService
 
+    @MockBean
+    private lateinit var postService: PostService
+
     @Test
     fun `test hello`() {
         mockMvc.perform(get("/?name=world"))
@@ -49,5 +52,14 @@ class HelloWorldControllerTest {
         mockMvc.perform(get("/users"))
                 .andExpect(status().isOk)
                 .andExpect(content().json("""[{"name":"user1"}, {"name":"user2"}]"""))
+    }
+
+    @Test
+    fun `test get posts`() {
+        whenever(postService.retrieveAllPosts()) doReturn listOf(Post(title = "t1"), Post(title = "t2"))
+
+        mockMvc.perform(get("/posts"))
+                .andExpect(status().isOk)
+                .andExpect(content().json("""[{"title":"t1"}, {"title":"t2"}]"""))
     }
 }

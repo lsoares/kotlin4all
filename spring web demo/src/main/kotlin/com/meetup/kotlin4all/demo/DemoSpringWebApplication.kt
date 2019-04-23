@@ -15,6 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.client.RestTemplate
+import retrofit2.Call
+import retrofit2.Retrofit
+import retrofit2.converter.jackson.JacksonConverterFactory
+import retrofit2.http.GET
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
@@ -30,7 +34,7 @@ fun main(args: Array<String>) {
 
 @RestController
 @RequestMapping("/")
-class HelloWorldController(private val itemService: ItemService, private val userService: UserService) {
+class HelloWorldController(private val itemService: ItemService, private val userService: UserService, private val postService: PostService) {
 
     @GetMapping
     fun sayHello(@RequestParam name: String) = "Hello $name"
@@ -40,6 +44,9 @@ class HelloWorldController(private val itemService: ItemService, private val use
 
     @GetMapping("users")
     fun getUsers() = userService.retrieveAllUsers()
+
+    @GetMapping("posts")
+    fun getPosts() = postService.retrieveAllPosts()
 }
 
 @Service
@@ -61,6 +68,11 @@ class UserService(@Value("\${jsonplaceholder.apiUrl}") val apiUrl: String,
     }
 }
 
+@Service
+class PostService(private val postAPI: PostAPI) {
+    fun retrieveAllPosts(): List<Post> = postAPI.getAllPosts().execute().body() ?: emptyList()
+}
+
 @Repository
 interface ItemRepository : JpaRepository<Item, Int>
 
@@ -79,9 +91,38 @@ data class User(
         val email: String = ""
 )
 
+data class Post(
+        val userId: Int = 0,
+        val id: Int = 0,
+        val title: String = "",
+        val body: String = ""
+)
+
 @Configuration
 class Config {
     @Bean
     fun restTemplate() = RestTemplate()
 }
 
+@Configuration
+class ApisConfiguration {
+
+    @Value("\${jsonplaceholder.apiUrl}")
+    private lateinit var apiUrl: String
+
+    @Bean
+    fun postApi(): PostAPI {
+        return Retrofit.Builder()
+                .baseUrl(apiUrl)
+                .addConverterFactory(JacksonConverterFactory.create())
+                .build()
+                .create(PostAPI::class.java)
+    }
+}
+
+interface PostAPI {
+
+    @GET("/posts")
+    fun getAllPosts(): Call<List<Post>>
+
+}
