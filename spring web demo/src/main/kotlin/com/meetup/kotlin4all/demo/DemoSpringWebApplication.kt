@@ -70,7 +70,7 @@ class UserService(@Value("\${jsonplaceholder.apiUrl}") val apiUrl: String,
 
 @Service
 class PostService(private val postAPI: PostAPI) {
-    fun retrieveAllPosts(): List<Post> = postAPI.getAllPosts().execute().body() ?: emptyList()
+    fun retrieveAllPosts() = postAPI.getAllPosts().execute().body() ?: emptyList()
 }
 
 @Repository
