@@ -27,8 +27,10 @@ class IntegrationTest {
     fun `test create customer`() {
         mockkObject(CustomerRepo)
         every { CustomerRepo.save(Customer("test")) } just Runs
-
-        main()
+        val myLogger = mockk<MyLogger> {
+            every { log(any()) } just Runs
+        }
+        runApp(myLogger)
         val request = HttpRequest.newBuilder()
             .uri(URI("http://localhost:7000/customers"))
             .header("Content-Type", "application/json")
@@ -37,6 +39,7 @@ class IntegrationTest {
         val response = newHttpClient().send(request.build(), ofString())
 
         verify { CustomerRepo.save(Customer("test")) }
+        verify { myLogger.log("Created Customer(name=test)") }
         assertEquals("", response.body())
         assertEquals(201, response.statusCode())
     }
