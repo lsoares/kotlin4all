@@ -1,15 +1,19 @@
 package com.example
 
-import io.ktor.application.*
+import io.ktor.application.Application
+import io.ktor.application.call
+import io.ktor.application.install
 import io.ktor.features.ContentNegotiation
 import io.ktor.jackson.jackson
-import io.ktor.response.*
-import io.ktor.routing.*
+import io.ktor.response.respond
+import io.ktor.response.respondText
+import io.ktor.routing.get
+import io.ktor.routing.routing
 import io.ktor.server.netty.EngineMain
 
 fun main(args: Array<String>): Unit = EngineMain.main(args)
 
-fun Application.module() {
+fun Application.demoModule() {
     install(ContentNegotiation) {
         jackson()
     }
