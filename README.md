@@ -39,6 +39,6 @@ Try with resources | use
 * Spring initializr
 * Kotlin Playground
 * Kotlin REPL
-  (1..10).forEach(::println)
+  * (1..10).forEach(::println)
 * Kotlin by example (Kotlin features)
 * Kotlin Koans (exercises)
