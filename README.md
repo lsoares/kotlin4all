@@ -37,8 +37,8 @@ Try with resources | use
 
 ## Learning Resources
 * [Kotlin reference](https://kotlinlang.org/docs/reference/)
-* [Kotlin In Action] (https://www.manning.com/books/kotlin-in-action)
-* [Kotlin Community] (https://kotlinlang.org/community/)
+* [Kotlin In Action](https://www.manning.com/books/kotlin-in-action)
+* [Kotlin Community](https://kotlinlang.org/community/)
 
 ## Resources
 * Spring initializr
