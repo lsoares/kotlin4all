@@ -35,6 +35,11 @@ String formatters, concatenations or appending | String templates
 Read strings from files or concatenate strings | Multiline strings
 Try with resources | use
 
+## Learning Resources
+* [Kotlin reference](https://kotlinlang.org/docs/reference/)
+* [Kotlin In Action] (https://www.manning.com/books/kotlin-in-action)
+* [Kotlin Community] (https://kotlinlang.org/community/)
+
 ## Resources
 * Spring initializr
 * Kotlin Playground
