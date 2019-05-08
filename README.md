@@ -1,6 +1,6 @@
 # Kotlin4All
 
-## Kotlin reference libraries
+## Kotlin libraries
 * Reactive programming
   * [RxKotlin](https://github.com/ReactiveX/RxKotlin)
   * [Vert.x](https://vertx.io/)
@@ -11,13 +11,18 @@
   * [kotlinx.html](https://github.com/Kotlin/kotlinx.html)
   * [Exposed](https://github.com/JetBrains/Exposed)
   * [Anko](https://github.com/Kotlin/anko)
-  * [Kotlin Gradle](https://kotlinlang.org/docs/reference/using-gradle.html)
+  * [Gradle Kotlin](https://gradle.org/kotlin/)
 * Testing
+  * [Mockito-Kotlin](https://github.com/nhaarman/mockito-kotlin)
+  * [MockK](https://mockk.io/)
   * [Spek](https://spekframework.org/)
   * [KotlinTest](https://github.com/kotlintest/kotlintest)
 * Web
   * [Ktor](https://ktor.io/)
+  * [Javalin](https://javalin.io/)
   * [JKid](https://github.com/yole/jkid)
+* [Curated list](https://github.com/mcxiaoke/awesome-kotlin#libraries)
+* [Kotlin resources](https://www.kotlinresources.com)
 
 ## From Java to Kotlin
 Java | Kotlin
@@ -61,4 +66,4 @@ Try with resources | `use`
 ## Other resources
 * [Spring initializr](https://start.spring.io/)
 * [Ktor project generator](https://ktor.io/quickstart/generator.html)
-* [Kotlin resources](https://www.kotlinresources.com)
+
