@@ -1,49 +1,50 @@
 # Kotlin4All
 
-## Future Talks
-* From Java to Kotlin
+## Kotlin reference libraries
 * Reactive programming
-  * RxKotlin
-  * Vert.x
-  * Spring Boot web reactive
+  * [RxKotlin](https://github.com/ReactiveX/RxKotlin)
+  * [Vert.x](https://vertx.io/)
+  * [Spring WebFlux](https://docs.spring.io/spring/docs/current/spring-framework-reference/web-reactive.html)
 * Functional programming
-  * Arrow
+  * [Arrow](https://arrow-kt.io/)
 * DSLs
-  * Kotlin.html
-  * Exposed
-  * Anko
-  * Kotlin Gradle
+  * [kotlinx.html](https://github.com/Kotlin/kotlinx.html)
+  * [Exposed](https://github.com/JetBrains/Exposed)
+  * [Anko](https://github.com/Kotlin/anko)
+  * [Kotlin Gradle](https://kotlinlang.org/docs/reference/using-gradle.html)
 * Testing
-  * Spek
-  * KotlinTest
+  * [Spek](https://spekframework.org/)
+  * [KotlinTest](https://github.com/kotlintest/kotlintest)
+* Other
+  * [JKid](https://github.com/yole/jkid)
 
-## Conversion Table
-JAVA | Kotlin
+## From Java to Kotlin
+Java | Kotlin
 ------------ | -------------
-Final modifier | val
-Null test (nested ifs) and NPEs | Safe call operator / Null types
-Fallback when null / Quick exit | Elvis operator
+`final` modifier | val
+`null` test (nested `if`s) and NPEs | Safe call operator (`?.`) / Null types
+Fallback when `null` / Quick exit | Elvis operator (`?:`)
 Util classes / Static methods | Package level functions and extensions
-Singleton pattern implementation | object
+Singleton pattern implementation | `object`
 Functional interfaces | Lambdas
-Switch with breaks / Multiple if/else | When operator
-Getters/setters/hashCode… / Lombok @Data | Data classes
+`switch` with `break`s / Multiple `if`/`else` | `when` operator
+Getters/setters/hashCode… / Lombok `@Data` | `data` classes
 Delegation pattern implementation | Delegators
 Builder pattern implementation / Lombok @Builder | Named and default arguments in constructors
 Method/constructor overloads | Named and default arguments in methods/constructors
 String formatters, concatenations or appending | String templates
 Read strings from files or concatenate strings | Multiline strings
-Try with resources | use
+Try with resources | `use`
 
-## Learning Resources
+## Learning resources
 * [Kotlin reference](https://kotlinlang.org/docs/reference/)
 * [Kotlin In Action](https://www.manning.com/books/kotlin-in-action)
 * [Kotlin Community](https://kotlinlang.org/community/)
+* [Kotlin Playground](https://play.kotlinlang.org)
+* [Kotlin by example](https://play.kotlinlang.org/byExample) (Kotlin features)
+* [Kotlin Koans](https://play.kotlinlang.org/koans/overview) (exercises)
 
-## Resources
-* Spring initializr
-* Kotlin Playground
-* Kotlin REPL
-  * (1..10).forEach(::println)
-* Kotlin by example (Kotlin features)
-* Kotlin Koans (exercises)
+## Other resources
+* [Spring initializr](https://start.spring.io/)
+* [Ktor project generator](https://ktor.io/quickstart/generator.html)
+* [Kotlin resources](https://www.kotlinresources.com)
