@@ -28,32 +28,34 @@
 Java | Kotlin
 ------------ | -------------
 `Integer` / `int` | `Int`
+`.equals` | `==`
+`==` | `===`
 Explicit types | Inferred types
 varargs (`...`) | `varargs` modifier
 `extends` | `:`
 `implements` | `:`
 Optional `@Override` | mandatory `override` 
 `final` modifier | val
-`null` test (nested `if`s) and NPEs | Safe call operator (`?.`) / Null types
+`null` test (nested `if`s) and NPEs | Safe call operator (`?.`)
 `@Nullable`, `@NotNull` and similar annotations | Not nullable types
-`unmodifiableCollection` / Guava collection factories (e.g. `ImmutableMap.of`) | read only factory factions
+`unmodifiableCollection` / Guava collection factories (e.g. `ImmutableMap.of`) | read-only collection factories
 Verbose collections initializations / `Map.of` | Collections factory functions (e.g. `mapOf` / `listOf` / `setOf`)
 `map.get(key)` / `map.set(key,val)` | `map\[key\]` / `map\[key\]=val`
 Apache Range class | Native ranges
 Ternary operator | `if` as an expression
 `switch` with `break`s / multiple `if`/`else` | `when` operator
 Fallback when `null` / Quick return | Elvis operator (`?:`)
-Lombok `@Data` | `data` classes
 Getters and setters | Properties
+Lombok `@Data` / manual implementation | `data` classes
 Util. classes / `static` functions | Package level functions / Extensions
 Singleton pattern implementation | `object`
 Delegation pattern implementation | `by`
-Builder pattern implementation / Lombok `@Builder` | Named and default arguments in constructors / `apply`
+Builder pattern implementation / Lombok `@Builder` | Named and default arguments in constructors / `.apply`
 Functional interfaces | Lambdas
 Method/constructor overloads | Named and default arguments in methods/constructors
 String formatting/concatenations/appending | String templates
 Read strings from files or concatenate strings | Multiline strings
-Try with resources | `use`
+Try with resources | `.use`
 
 ## Learning resources
 * [Kotlin reference](https://kotlinlang.org/docs/reference/)
